@@ -37,7 +37,7 @@ async function initTable() {
     obj +=
       `<a href="mailto:` +
       element.email +
-      `" class="text-decoration-none">` +
+      `" class="text-decoration-none text-black">` +
       element.email +
       `</a>`;
     obj +=
