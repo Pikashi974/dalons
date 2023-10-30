@@ -21,12 +21,12 @@ async function getUsers() {
 
 async function initTable() {
   for (let index = 0; index < users.length; index++) {
-    let obj = `<div class="col-lg-4 col-sm-6 border border-1">`;
+    let obj = `<div class="border border-1">`;
     const element = users[index];
     if (element.gender == "male") {
-      obj += `<i class="bi bi-gender-male"></i>`;
+      obj += `<i class="bi bi-gender-male" style="color: blue;"></i>`;
     } else {
-      obj += `<i class="bi bi-gender-female"></i>`;
+      obj += `<i class="bi bi-gender-female" style="color: pink;"></i>`;
     }
     // obj += `<p>` + element.gender + `</p>`;
     obj +=
@@ -34,8 +34,20 @@ async function initTable() {
       element.picture.medium +
       `" style="border-radius:50%"/></div>`;
     obj += `<h4>` + element.name.first + " " + element.name.last + `</h4>`;
-    obj += `<a href="mailto:` + element.email + `">` + element.email + `</a>`;
+    obj +=
+      `<a href="mailto:` +
+      element.email +
+      `" class="text-decoration-none">` +
+      element.email +
+      `</a>`;
+    obj +=
+      `<p> Inscrit depuis ` +
+      parseInt(
+        (new Date().getTime() - new Date(element.registered.date).getTime()) /
+          (1000 * 3600 * 24) // On divise par le nombre de millisecondes
+      ) +
+      ` jours </p>`;
     obj += `</div>`;
-    document.querySelector("body").innerHTML += obj;
+    document.querySelector("#portfolio").innerHTML += obj;
   }
 }
